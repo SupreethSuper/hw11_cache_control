@@ -10,9 +10,9 @@ module cam2
    )
    (
 //---------------------outputs only----------------------------------------------
-   output logic [BITS-1:0]    data,        // the data
-   output logic               found_it,    // was in the CAM
-   output logic               full,        //if  1 cam is full, else 0
+   output logic [BITS-1:0]    cache_data,        // the data
+   output logic               cache_hit,    // was in the CAM - initially called as found_it
+   output logic               cache_full,        //if  1 cam is full, else 0
 //----------------------end of outputs--------------------------------------------
 
 //------------------------inputs only-------------------------------------------
@@ -65,7 +65,7 @@ logic                 write_found; //did we find it
                data_mem[index] <= {BITS{1'b0}};
            end
        end
-       else if ((!write_) && (new_valid) && (!full) && (write_found) ) begin // write_ is active-low
+       else if ((!write_) && (new_valid) && (!cache_full) && (write_found) ) begin // write_ is active-low
            val_mem[write_index] <= new_valid;
            tag_mem[write_index] <= new_tag;
            data_mem[write_index] <= wdata;
@@ -111,7 +111,7 @@ logic                 write_found; //did we find it
 // logic [ADDR_LEFT : 0] write_index; //where we found it
 // logic                 write_found; //did we find it
 
-      full        = 1'b1; //we are saying that, initially its full
+      cache_full        = 1'b1; //we are saying that, initially its full
       write_found = 1'b0; //we are assuming its not empty 
       write_index =  { (ADDR_LEFT + 1) {1'b0} }; //initializing
 
@@ -135,7 +135,7 @@ logic                 write_found; //did we find it
 //--------------------------------------------------------------------------------------
 
 
-   assign data = found ? data_mem[match_index] : { BITS { 1'b0 } };
-   assign found_it = found;
+   assign cache_data = found ? data_mem[match_index] : { BITS { 1'b0 } };
+   assign cache_hit = found; //initially called as found_it
 
 endmodule

@@ -6,8 +6,8 @@ module top_cam2();
    localparam WORDS=8;
    localparam ADDR_LEFT=$clog2(WORDS)-1;
 
-   logic [BITS-1:0]    data;
-   logic               found_it;
+   logic [BITS-1:0]    cache_data;
+   logic               cache_hit;
    logic [TAG_SZ-1:0]  new_tag;
    logic [TAG_SZ-1:0]  check_tag;
    logic               rst_;
@@ -28,14 +28,14 @@ module top_cam2();
    logic [TAG_SZ-1:0] tag_6;
    logic [TAG_SZ-1:0] tag_7;
 
-   logic [BITS-1:0] data_0;
-   logic [BITS-1:0] data_1;
-   logic [BITS-1:0] data_2;
-   logic [BITS-1:0] data_3;
-   logic [BITS-1:0] data_4;
-   logic [BITS-1:0] data_5;
-   logic [BITS-1:0] data_6;
-   logic [BITS-1:0] data_7;
+   logic [BITS-1:0] cache_data_0;
+   logic [BITS-1:0] cache_data_1;
+   logic [BITS-1:0] cache_data_2;
+   logic [BITS-1:0] cache_data_3;
+   logic [BITS-1:0] cache_data_4;
+   logic [BITS-1:0] cache_data_5;
+   logic [BITS-1:0] cache_data_6;
+   logic [BITS-1:0] cache_data_7;
 
    logic val_0;
    logic val_1;
@@ -48,7 +48,7 @@ module top_cam2();
 
    logic full;              //for the new output full added
 
-   cam2 cam2( .data(data), .found_it(found_it),
+   cam2 cam2( .cache_data(cache_data), .cache_hit(cache_hit),
 
             .check_tag(check_tag), .read(read),
             .full(full),
@@ -141,7 +141,7 @@ module top_cam2();
 
 
    always @(posedge clk) begin
-    $display("full = %b, data = %h, found_it = %b", full, data, found_it);
+    $display("full = %b, cache_data = %h, cache_hit = %b", full, cache_data, cache_hit);
 
   end
 
@@ -157,14 +157,14 @@ module top_cam2();
    assign tag_6 = cam2.tag_mem[6];
    assign tag_7 = cam2.tag_mem[7];
 
-   assign data_0 = cam2.data_mem[0];
-   assign data_1 = cam2.data_mem[1];
-   assign data_2 = cam2.data_mem[2];
-   assign data_3 = cam2.data_mem[3];
-   assign data_4 = cam2.data_mem[4];
-   assign data_5 = cam2.data_mem[5];
-   assign data_6 = cam2.data_mem[6];
-   assign data_7 = cam2.data_mem[7];
+   assign cache_data_0 = cam2.cache_data_mem[0];
+   assign cache_data_1 = cam2.cache_data_mem[1];
+   assign cache_data_2 = cam2.cache_data_mem[2];
+   assign cache_data_3 = cam2.cache_data_mem[3];
+   assign cache_data_4 = cam2.cache_data_mem[4];
+   assign cache_data_5 = cam2.cache_data_mem[5];
+   assign cache_data_6 = cam2.cache_data_mem[6];
+   assign cache_data_7 = cam2.cache_data_mem[7];
 
    assign val_0 = cam2.val_mem[0];
    assign val_1 = cam2.val_mem[1];
