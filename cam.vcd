@@ -1,0 +1,347 @@
+$date
+	Mon Nov 17 20:23:28 2025
+$end
+
+$version
+	Synopsys VCS version T-2022.06-SP2-1_Full64
+$end
+
+$timescale
+	1ps
+$end
+
+$comment Csum: 1 a52c363a1deb506a $end
+
+
+$scope module top_cam2 $end
+$var reg 8 ! data [7:0] $end
+$var reg 1 " found_it $end
+$var reg 8 # new_tag [7:0] $end
+$var reg 8 $ check_tag [7:0] $end
+$var reg 1 % rst_ $end
+$var reg 1 & clk $end
+$var reg 3 ' w_addr [2:0] $end
+$var reg 8 ( wdata [7:0] $end
+$var reg 1 ) read $end
+$var reg 1 * write_ $end
+$var reg 1 + new_valid $end
+$var reg 8 , tag_0 [7:0] $end
+$var reg 8 - tag_1 [7:0] $end
+$var reg 8 . tag_2 [7:0] $end
+$var reg 8 / tag_3 [7:0] $end
+$var reg 8 0 tag_4 [7:0] $end
+$var reg 8 1 tag_5 [7:0] $end
+$var reg 8 2 tag_6 [7:0] $end
+$var reg 8 3 tag_7 [7:0] $end
+$var reg 8 4 data_0 [7:0] $end
+$var reg 8 5 data_1 [7:0] $end
+$var reg 8 6 data_2 [7:0] $end
+$var reg 8 7 data_3 [7:0] $end
+$var reg 8 8 data_4 [7:0] $end
+$var reg 8 9 data_5 [7:0] $end
+$var reg 8 : data_6 [7:0] $end
+$var reg 8 ; data_7 [7:0] $end
+$var reg 1 < val_0 $end
+$var reg 1 = val_1 $end
+$var reg 1 > val_2 $end
+$var reg 1 ? val_3 $end
+$var reg 1 @ val_4 $end
+$var reg 1 A val_5 $end
+$var reg 1 B val_6 $end
+$var reg 1 C val_7 $end
+$var reg 1 D full $end
+
+$scope module cam2 $end
+$var reg 8 E val_mem [7:0] $end
+$var reg 8 F data [7:0] $end
+$var reg 1 G found_it $end
+$var reg 1 H full $end
+$var wire 1 I read $end
+$var wire 1 J clk $end
+$var wire 1 K write_ $end
+$var wire 1 L rst_ $end
+$var wire 1 M new_valid $end
+$var wire 8 N check_tag [7:0] $end
+$var wire 3 O w_addr [2:0] $end
+$var wire 8 P wdata [7:0] $end
+$var wire 8 Q new_tag [7:0] $end
+$var integer 32 R windex $end
+$var reg 3 S write_index [2:0] $end
+$var reg 1 T write_found $end
+$var integer 32 U index $end
+$var reg 3 V match_index [2:0] $end
+$var reg 1 W found $end
+
+$scope begin unnamed$$_0 $end
+$upscope $end
+
+
+$scope begin unnamed$$_1 $end
+$upscope $end
+
+$upscope $end
+
+$upscope $end
+
+$enddefinitions $end
+
+#0
+$dumpvars
+0G
+0H
+1M
+0I
+0L
+1K
+0&
+0W
+0"
+0D
+1+
+0)
+0%
+xC
+xB
+xA
+x@
+x?
+x>
+x=
+x<
+1*
+xT
+b00000000 N
+b00000000 F
+b00000001 Q
+b000 O
+b00000000 P
+b00000000 $
+b00000000 !
+b00000000 4
+b00000000 5
+b00000000 6
+b00000000 7
+b00000000 8
+b00000000 9
+b00000000 :
+b00000000 ;
+bxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx U
+b000 V
+b00000001 #
+b00000000 ,
+b00000000 -
+b00000000 .
+b00000000 /
+b00000000 0
+b00000000 1
+b00000000 2
+b00000000 3
+b00000000 E
+b000 '
+b00000000 (
+bxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx R
+bxxx S
+0J
+$end
+0C
+0B
+0A
+0@
+0?
+0>
+0=
+0<
+#10
+0*
+0K
+b00000101 #
+b00000101 Q
+b00010001 (
+b00010001 P
+b001 '
+b001 O
+1%
+1L
+#20
+1&
+1J
+b00000010 E
+1=
+b00000101 -
+b00010001 5
+#30
+0&
+0J
+b00000110 #
+b00000110 Q
+b00010011 (
+b00010011 P
+b011 '
+b011 O
+#40
+1&
+1J
+b00001010 E
+1?
+b00000110 /
+b00010011 7
+#50
+0&
+0J
+b00000000 #
+b00000000 Q
+b00010101 (
+b00010101 P
+b101 '
+b101 O
+#60
+1&
+1J
+b00101010 E
+1A
+b00010101 9
+b101 V
+1W
+1G
+1"
+b00010101 F
+b00010101 !
+#70
+0&
+0J
+b00000100 #
+b00000100 Q
+b00010110 (
+b00010110 P
+b110 '
+b110 O
+#80
+1&
+1J
+b01101010 E
+1B
+b00000100 2
+b00010110 :
+#90
+0&
+0J
+b00001001 #
+b00001001 Q
+b00010111 (
+b00010111 P
+b111 '
+b111 O
+#100
+1&
+1J
+b11101010 E
+1C
+b00001001 3
+b00010111 ;
+#110
+0&
+0J
+1*
+1K
+1)
+1I
+0+
+0M
+b00000000 #
+b00000000 Q
+b00000000 (
+b00000000 P
+b000 '
+b000 O
+#120
+1&
+1J
+#130
+0&
+0J
+b00000101 $
+b00000101 N
+b001 V
+b00010001 F
+b00010001 !
+#140
+1&
+1J
+#150
+0&
+0J
+b00000110 $
+b00000110 N
+b011 V
+b00010011 F
+b00010011 !
+#160
+1&
+1J
+#170
+0&
+0J
+b00000111 $
+b00000111 N
+b000 V
+0W
+0G
+0"
+b00000000 F
+b00000000 !
+#180
+1&
+1J
+#190
+0&
+0J
+b00000000 $
+b00000000 N
+b101 V
+1W
+1G
+1"
+b00010101 F
+b00010101 !
+#200
+1&
+1J
+#210
+0&
+0J
+b00000100 $
+b00000100 N
+b110 V
+b00010110 F
+b00010110 !
+#220
+1&
+1J
+#230
+0&
+0J
+b00001001 $
+b00001001 N
+b111 V
+b00010111 F
+b00010111 !
+#240
+1&
+1J
+#250
+0&
+0J
+b00000001 $
+b00000001 N
+b000 V
+0W
+0G
+0"
+b00000000 F
+b00000000 !
+#260
+1&
+1J
+#270
+0&
+0J
