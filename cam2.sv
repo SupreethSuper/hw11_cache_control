@@ -45,7 +45,7 @@ logic                 write_found; //did we find it
 
 
 
-   logic [BITS-1:0]   data_mem[0:WORDS-1]; // data memory
+   logic [BITS-1:0]   cache_data_mem[0:WORDS-1]; // data memory
    logic [TAG_SZ-1:0] tag_mem[0:WORDS-1];  // tag memory
    logic [WORDS-1:0]  val_mem;             // valid memory
 
@@ -62,20 +62,20 @@ logic                 write_found; //did we find it
            for (int index = 0; index < WORDS; index++) begin
                val_mem[index] <= 1'b0;
                tag_mem[index] <= {TAG_SZ{1'b0}};
-               data_mem[index] <= {BITS{1'b0}};
+               cache_data_mem[index] <= {BITS{1'b0}};
            end
        end
        else if ((!write_) && (new_valid) && (!cache_full) && (write_found) ) begin // write_ is active-low
            val_mem[write_index] <= new_valid;
            tag_mem[write_index] <= new_tag;
-           data_mem[write_index] <= wdata;
+           cache_data_mem[write_index] <= wdata;
        end
        else if ( (!write_) && (!new_valid) ) begin
 
 
                val_mem[w_addr] <= 1'b0;
                tag_mem[w_addr] <= {TAG_SZ{1'b0}};
-               data_mem[w_addr] <= {BITS{1'b0}}; 
+               cache_data_mem[w_addr] <= {BITS{1'b0}}; 
 
 
        end
@@ -119,7 +119,7 @@ logic                 write_found; //did we find it
          if(!write_found && (!val_mem[windex]) ) begin
             write_found = 1'b1; //so we found a space to write
             write_index = INDEX[windex][ADDR_LEFT : 0]; //similar to match_index
-            full = 1'b0; //found atleast one empty
+            cache_full = 1'b0; //found atleast one empty
 
          end
       end
@@ -135,7 +135,7 @@ logic                 write_found; //did we find it
 //--------------------------------------------------------------------------------------
 
 
-   assign cache_data = found ? data_mem[match_index] : { BITS { 1'b0 } };
+   assign cache_data = found ? cache_data_mem[match_index] : { BITS { 1'b0 } };
    assign cache_hit = found; //initially called as found_it
 
 endmodule

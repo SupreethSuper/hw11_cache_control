@@ -46,12 +46,12 @@ module top_cam2();
    logic val_6;
    logic val_7;
 
-   logic full;              //for the new output full added
+   logic cache_full;              //for the new output cache_full added
 
    cam2 cam2( .cache_data(cache_data), .cache_hit(cache_hit),
 
             .check_tag(check_tag), .read(read),
-            .full(full),
+            .cache_full(cache_full),
 
             .write_(write_), .w_addr(w_addr),
             .wdata(wdata), .new_tag(new_tag), .new_valid(new_valid),
@@ -141,7 +141,7 @@ module top_cam2();
 
 
    always @(posedge clk) begin
-    $display("full = %b, cache_data = %h, cache_hit = %b", full, cache_data, cache_hit);
+    $display("cache_full = %b, cache_data = %h, cache_hit = %b", cache_full, cache_data, cache_hit);
 
   end
 
@@ -175,12 +175,12 @@ module top_cam2();
    assign val_6 = cam2.val_mem[6];
    assign val_7 = cam2.val_mem[7];
 
-  // Fill all CAM entries and check "full"
+  // Fill all CAM entries and check "cache_full"
 integer fill_idx;
 initial begin
     // Reset and initial entries as usual...
 
-    // Fill every CAM entry to trigger "full"
+    // Fill every CAM entry to trigger "cache_full"
     for (fill_idx = 0; fill_idx < WORDS; fill_idx++) begin
         w_addr    = fill_idx;
         wdata     = fill_idx + 8'h20;  // any data
@@ -193,12 +193,12 @@ initial begin
         write_    = 1'b1;
     end
 
-    // Wait one more cycle and check "full"
+    // Wait one more cycle and check "cache_full"
     wait(clk == 1'b1);
-    if (!full)
-        $error("CAM should be full after filling all entries!");
+    if (!cache_full)
+        $error("CAM should be cache_full after filling all entries!");
 
-    // Try writing once more after full
+    // Try writing once more after cache_full
     w_addr    = 0;
     wdata     = 8'hFF;
     new_tag   = 8'hFF;
@@ -208,9 +208,9 @@ initial begin
     wait(clk == 1'b0);
     write_    = 1'b1;
 
-    // Confirm "full" is still set
-    if (!full)
-        $error("CAM 'full' output should remain set after attempt to overfill!");
+    // Confirm "cache_full" is still set
+    if (!cache_full)
+        $error("CAM 'cache_full' output should remain set after attempt to overfill!");
     #100; //to make sure, everything has been done
     $finish;
 end
