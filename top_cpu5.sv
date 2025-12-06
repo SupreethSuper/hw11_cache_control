@@ -1,6 +1,6 @@
 // test bench for the cpu
 
-module top_cpu4();
+module top_cpu5();
 
    //logic [31:0] rdata;
    logic        halt;
@@ -12,13 +12,13 @@ module top_cpu4();
 
    initial // read the array to load the program
    begin
-     $readmemh("i_mem_vals.txt",cpu4.i_memory.mem); // loading the memory
-     //$readmemh("",cpu4.i_memory.mem);
+     $readmemh("i_mem_vals.txt",cpu5.i_memory.mem); // loading the memory
+     //$readmemh("",cpu5.i_memory.mem);
      //for ( integer ind = 0 ; ind < 5 ; ind++ )
      //   $display("memory index %d is %h",ind,cpu.i_memory.mem[ind]);
    end
 
-   cpu4 cpu4( .halt(halt), .exception(exception), .clk(clk), .rst_(rst_) );
+   cpu5 cpu5( .halt(halt), .exception(exception), .clk(clk), .rst_(rst_) );
 
    initial
    begin
@@ -59,7 +59,7 @@ module top_cpu4();
   final   // dump the regfile to verify things worked
   begin
      for ( integer index = 0 ; index < 32 ; index++ )
-        $display("regfile %d is %h",index,cpu4.regfile.mem[index]);
+        $display("regfile %d is %h",index,cpu5.regfile.mem[index]);
   end
 
   //initial

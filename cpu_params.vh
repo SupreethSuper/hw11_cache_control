@@ -12,3 +12,9 @@ localparam SHIFT_BITS=5;                      // bits needed to define shift amo
 localparam OP_BITS    = 4;
 localparam JMP_LEFT   = 25;
 localparam IMM_LEFT = BITS / 2;               // number of bits in immediate field
+
+//as per slides
+
+localparam CACHE_ENTRIES = 8; // how many entries in the cache
+localparam CACHE_TAGSZ = 32;// tag bits - entire address
+localparam CACHE_ADDR_LEFT=$clog2(CACHE_ENTRIES)-1; // log2 of #of entries

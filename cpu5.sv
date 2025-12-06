@@ -1,5 +1,5 @@
 // the top level cpu 
-module cpu4
+module cpu5
    (
    output logic      halt,      // halt signal to end simulation
    output logic      exception, // the exception interupt signal
@@ -159,6 +159,28 @@ module cpu4
        .rdata(i_mem_rdata), .clk(clk), .wdata(32'b0), .rw_(1'b1),
        .addr(pc_addr), .byte_en(4'b0) );
 
+//---------------------cache-------------------------------
+   cam2 #(
+      .WORDS(CACHE_ENTRIES),
+      .BITS(BITS),
+      // .ADDR_LEFT(CACHE_ADDR_LEFT),
+      .TAG_SZ(CACHE_TAGSZ)
+   )
+   cam(
+            .check_tag(check_tag), .read(read),
+            .cache_full(cache_full),
+
+            .write_(write_), .w_addr(w_addr),
+            .wdata(wdata), .new_tag(new_tag), .new_valid(new_valid),
+
+            .clk(clk), .rst_(rst_)
+   );
+
+
+
+
+
+ //----------------------------------------------------  
    // the instruction register - includes instruction decode
    // gets instruction to execute and decodes it, telling the rest of the design what to do
    instr_reg #( .BITS(BITS), .REG_WORDS(REG_WORDS), .OP_BITS(OP_BITS),
